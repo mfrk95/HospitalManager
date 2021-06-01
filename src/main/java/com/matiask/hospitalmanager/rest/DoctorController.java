@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/hospital")
 public class DoctorController {
     private DoctorService doctorService;
@@ -17,11 +18,13 @@ public class DoctorController {
         this.doctorService = doctorService;
     }
 
+
     @GetMapping("/doctors")
     public List<Doctor> findAll(){
        List<Doctor> doctorList =  doctorService.findAll();
        return doctorList;
     }
+
 
     @GetMapping("/doctors/{doctorId}")
     public Doctor getDoctor(@PathVariable int doctorId ){
@@ -31,6 +34,7 @@ public class DoctorController {
         }
         return doctor;
     }
+
 
     @PostMapping("/doctors")
     public Doctor addDoctor(@RequestBody Doctor doctor){
